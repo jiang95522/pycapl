@@ -119,3 +119,4 @@ py -3 steps\s2_sysvar_test.py        # Step 2: sysvar 开阀测试 ✅
 - `docs/执行步骤.md` — 分步指南和当前进度
 - `docs/测试方案.md` — 架构设计
 - `docs/会话记录.md` — 接续记录
+

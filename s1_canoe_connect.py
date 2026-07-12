@@ -11,9 +11,9 @@ sys.stdout.reconfigure(encoding='utf-8')
 # 工程路径（直接从 config.py 来）
 CFG_PATH = r"C:\Users\Administrator\Desktop\Test_material\02_CANOE_CANAPE_Project\Canoe15_500K\NVS_Project01.cfg"
 
-print("=" * 50)
+print("=" * 50)  
 print("Step 1: CANoe COM 连接验证")
-print("=" * 50)
+print("=" * 50)  #打印五十个=
 
 # 1. 检查工程文件
 print(f"\n[1/4] 检查工程文件...")
@@ -22,15 +22,19 @@ if not os.path.exists(CFG_PATH):
     exit(1)
 print(f"[OK] 工程文件存在: {CFG_PATH}")
 
+#Dispatch() 是 pywin32 提供的工厂函数。"CANoe.Application" 不是随便写的字符串，
+#它是 CANoe 注册在 Windows 里的 ProgID（程序标识符）。
+# Dispatch() 返回的不是 CANoe.exe 本身，而是 CANoe 内部的一个 Application 对象，它暴露了一组方法供外部调用。
+
 # 2. 创建 CANoe 对象
 print(f"\n[2/4] 创建 CANoe COM 对象...")
-try:
+try:           # ① 试试看
     canoe = win32com.client.Dispatch("CANoe.Application")
     print(f"[OK] 版本: {canoe.Version}")
-except Exception as e:
-    print(f"[FAIL] 创建失败: {e}")
+except Exception as e:         # ② 如果出错了，接住
+    print(f"[FAIL] 创建失败: {e}")  #    打印友好的错误信息
     print("      请确认 CANoe 已安装")
-    exit(1)
+    exit(1)                  #   正常退出
 
 # 3. 打开工程
 print(f"\n[3/4] 打开工程...")
